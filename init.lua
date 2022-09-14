@@ -8,12 +8,7 @@ local owofaces = {
 }
 
 minetest.register_on_chat_message(function(name, message)
-	message = message:gsub("R", "W")
-					 :gsub("r", "w")
-					 :gsub("L", "W")
-					 :gsub("l", "w")
-
-	minetest.chat_send_all("<"..name.."> "..message.." "..owofaces[math.random(#owofaces)])
-
+	minetest.chat_send_all(minetest.format_chat_message(name,
+		message:gsub(".", {r = "w", R = "W", l = "w", L = "W"}) .. " " .. owofaces[math.random(#owofaces)]))
 	return true
 end)
