@@ -16,7 +16,8 @@ minetest.register_on_chat_message(function(name, message)
 	if enabled then
 		minetest.chat_send_all(minetest.format_chat_message(name,
 			message:gsub(".", {r = "w", R = "W", l = "w", L = "W"}) .. " " .. owofaces[math.random(#owofaces)]))
-
+		-- Returning false means the message also doesn't log. This restores that behavior.
+		minetest.log("action", "CHAT(pre-owospeak): <" .. name .. "> " .. message)
 		return true
 	end
 end)
